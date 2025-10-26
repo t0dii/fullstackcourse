@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: User inputs text and presses 'save'
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server-->>browser: 201 created
+    deactivate server
+
+    Note right of browser: The browser starts executing the JavaScript code that fetches the JSON from the server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: JSON data is updated with new note
+    deactivate server
+
+    Note right of browser: JS re renders the note
