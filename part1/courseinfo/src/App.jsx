@@ -1,28 +1,16 @@
+import { useState } from 'react'
+
 const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
-  }
+  const [good, setGood] = useState(0)
+  const [netural, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+
 
   return (
     <div>
-      <p>Title of course: {course.name}</p>
-      <p>Name of course: {course.parts[0].name}. Number of exercises: {course.parts[0].exercises}</p>
-      <p>Name of course: {course.parts[1].name}. Number of exercises: {course.parts[1].exercises}</p>
-      <p>Name of course: {course.parts[2].name}. Number of exercises: {course.parts[2].exercises}</p>
+      <h1>give feedback</h1>
+      
+      <h1>statistics</h1>
     </div>
   )
 }
