@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Statistics = (props) => {
+const StatisticsLine = (props) => {
   console.log(props)
   if(props.allClicks.length === 0){
     return (
@@ -24,6 +24,27 @@ const Statistics = (props) => {
         {' '}
       </p>
     </div>
+  )
+}
+
+const Statistics = (props) => {
+  console.log(props)
+  return (
+    <div>
+      <p>
+        <StatisticsLine text="good" value ={props.good}/>
+        <StatisticsLine text="bad" value={props.bad}/>
+        <StatisticsLine text="neutral" value={props.neutral}/>
+      </p>
+    </div>
+  )
+}
+
+const Button = (props) => {
+  return (
+    <button onClick={props.onClick}>
+      {props.text}
+    </button>
   )
 }
 
@@ -53,14 +74,22 @@ const App = () => {
     <div>
       <h1>give feedback</h1>
 
-      <button onClick={goodClick}>good</button>
+      <Button
+        onClick={goodClick}
+        text='good'
+      />
 
-      <button onClick={badClick}>bad</button>
-
-      <button onClick={neutralClick}>neutral</button>
+      <Button
+        onClick={badClick}
+        text='bad'
+      />
+      <Button
+        onClick={neutralClick}
+        text='neutral'
+      />
 
       <h1>statistics</h1>
-      <Statistics allClicks={allClicks} good={good} bad={bad} neutral={neutral} average={average} positive={positive}/>
+      <StatisticsLine allClicks={allClicks} good={good} bad={bad} neutral={neutral} average={average} positive={positive}/>
 
     </div>
   )
