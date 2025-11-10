@@ -48,7 +48,6 @@ const App = () => {
   const average = (good*1 + bad*-1 + neutral*0)/all;
   const positive = (good/all)*100 + '%';
   const [selected, setSelected] = useState(0)
-
   const anecdotes = [
     'If it hurts, do it more often.',
     'Adding manpower to a late software project makes it later!',
@@ -59,7 +58,6 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-
 
   const neutralClick = () => {
     setAll(allClicks.concat(''))
@@ -75,6 +73,10 @@ const App = () => {
   }
   const arrayClick = () => {
     setSelected(selected + 1)
+  }
+
+  const voteClick = () =>{
+    setVote(copy => copy + 1)
   }
   return (
     <div>
@@ -106,10 +108,10 @@ const App = () => {
       </table>
 
       <h1>Anecdotes</h1>
-      {anecdotes[selected]}
+      {anecdotes[selected]} has {votes} votes
       <br/>
+      <button onClick={voteClick}>vote</button>
       <button onClick={arrayClick}>next anecdotes</button>
-
     </div>
   )
 }
