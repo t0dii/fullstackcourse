@@ -2,6 +2,15 @@ import { useState } from 'react'
 
 const StatisticsLine = (props) => {
   console.log(props)
+  return (
+    <div>
+      {props.text} {props.value}
+    </div>
+  )
+}
+
+const Statistics = (props) => {
+  console.log(props)
   if(props.allClicks.length === 0){
     return (
       <div>
@@ -11,31 +20,13 @@ const StatisticsLine = (props) => {
   }
   return (
     <div>
-      <p>
-        Good={props.good}
-        {' '}
-        Bad={props.bad}
-        {' '}
-        Neutral={props.neutral}
-        {' '}
-        Average={props.average}
-        {' '}
-        Positive={props.positive}
-        {' '}
-      </p>
-    </div>
-  )
-}
-
-const Statistics = (props) => {
-  console.log(props)
-  return (
-    <div>
-      <p>
         <StatisticsLine text="good" value ={props.good}/>
-        <StatisticsLine text="bad" value={props.bad}/>
         <StatisticsLine text="neutral" value={props.neutral}/>
-      </p>
+        <StatisticsLine text="bad" value={props.bad}/>
+        <StatisticsLine text="all" value={props.all}/>
+        <StatisticsLine text="average" value={props.average}/>
+        <StatisticsLine text="positive" value={props.positive}/>
+
     </div>
   )
 }
@@ -89,7 +80,16 @@ const App = () => {
       />
 
       <h1>statistics</h1>
-      <StatisticsLine allClicks={allClicks} good={good} bad={bad} neutral={neutral} average={average} positive={positive}/>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <Statistics allClicks={allClicks} good={good} neutral={neutral} bad={bad} all={all} average={average} positive={positive} />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
 
     </div>
   )
