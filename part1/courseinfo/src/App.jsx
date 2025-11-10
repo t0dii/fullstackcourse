@@ -58,6 +58,7 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))
 
   const neutralClick = () => {
     setAll(allClicks.concat(''))
@@ -76,7 +77,9 @@ const App = () => {
   }
 
   const voteClick = () =>{
-    setVote(copy => copy + 1)
+    const copy = [...votes]
+    setVotes(copy)
+    copy[selected] += 1
   }
   return (
     <div>
@@ -108,7 +111,7 @@ const App = () => {
       </table>
 
       <h1>Anecdotes</h1>
-      {anecdotes[selected]} has {votes} votes
+      {anecdotes[selected]} has {votes[selected]} votes
       <br/>
       <button onClick={voteClick}>vote</button>
       <button onClick={arrayClick}>next anecdotes</button>
