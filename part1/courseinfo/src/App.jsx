@@ -81,6 +81,9 @@ const App = () => {
     setVotes(copy)
     copy[selected] += 1
   }
+
+  const votesMax = Math.max(...votes)
+
   return (
     <div>
       <h1>give feedback</h1>
@@ -115,6 +118,10 @@ const App = () => {
       <br/>
       <button onClick={voteClick}>vote</button>
       <button onClick={arrayClick}>next anecdotes</button>
+
+      <h1>Anecodotes with the most votes</h1>
+      {anecdotes[votes.indexOf(votesMax)]}
+      votes={votesMax}
     </div>
   )
 }
