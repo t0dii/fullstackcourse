@@ -1,7 +1,7 @@
 const Course = (props) => {
   return(
     <div>
-      <Header header={props.header}/>
+      <Header name={props.course.name}/>
       <Content parts={props.course.parts}/>
     </div>
   )
@@ -30,7 +30,7 @@ const Part = (props) => {
   const {parts} = props
   return (
     <ul>
-      {parts.map(part=><li key={part.name}>{part.exercises}</li>)}
+      {parts.map(part=><li key={part.name}>{part.name} {part.exercises}</li>)}
     </ul>
   )
 }
