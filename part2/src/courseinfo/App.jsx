@@ -3,6 +3,7 @@ const Course = (props) => {
     <div>
       <Header name={props.course.name}/>
       <Content parts={props.course.parts}/>
+      <Total parts={props.course.parts}/>
     </div>
   )
 }
@@ -29,14 +30,18 @@ const Part = (props) => {
   console.log("hi")
   const {parts} = props
   return (
-    <ul>
+    <div>
       {parts.map(part=><li key={part.name}>{part.name} {part.exercises}</li>)}
-    </ul>
+    </div>
   )
 }
 
-// const Total = (props) => <p>Number of exercises {props.total}</p>
-
+const Total = (props) => {
+  const calcTotal = props.parts.reduce((prevValue, currentValue)=>prevValue+currentValue.exercises,0);
+  return (
+    <div><p><b>total of {calcTotal} exercises</b></p></div>
+  )
+}
 const App = () => {
   const course = {
     id: 1,
