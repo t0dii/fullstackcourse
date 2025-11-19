@@ -88,9 +88,10 @@ const App = () => {
     }
   ]
 
-  return(
+  return (
     <div>
-      <Course course={courses}/>
+      <h1>Web development curriculum</h1>
+      {courses.map((course)=>(<Course key={course.id} course={course}/>))}
     </div>
   )
 }
