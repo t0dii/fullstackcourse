@@ -1,47 +1,5 @@
-const Course = (props) => {
-  return(
-    <div>
-      <Header name={props.course.name}/>
-      <Content parts={props.course.parts}/>
-      <Total parts={props.course.parts}/>
-    </div>
-  )
-}
+import Course from './Course';
 
-const Header = (props) => {
-  return (
-    <div>
-      <h1>
-        {props.name}
-      </h1>
-    </div>
-  )
-}
-
-const Content = (props) => {
-  return(
-    <div>
-      <Part parts={props.parts}/>
-    </div>
-  )
-}
-
-const Part = (props) => {
-  console.log("hi")
-  const {parts} = props
-  return (
-    <div>
-      {parts.map(parts=><li key={parts.name}>{parts.name} {parts.exercises}</li>)}
-    </div>
-  )
-}
-
-const Total = (props) => {
-  const calcTotal = props.parts.reduce((prevValue, currentValue)=>prevValue+currentValue.exercises,0);
-  return (
-    <div><p><b>total of {calcTotal} exercises</b></p></div>
-  )
-}
 const App = () => {
   const courses = [
     {
@@ -91,7 +49,7 @@ const App = () => {
   return (
     <div>
       <h1>Web development curriculum</h1>
-      {courses.map((course)=>(<Course key={course.id} course={course}/>))}
+      {courses.map(course=><Course key={course.id} course={course}/>)}
     </div>
   )
 }
