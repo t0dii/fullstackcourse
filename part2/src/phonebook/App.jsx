@@ -1,10 +1,8 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
-  ])
-  const [newName, setNewName] = useState('')
+  const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
+  const [newName, setNewName] = useState("");
 
   return (
     <div>
@@ -20,7 +18,7 @@ const App = () => {
       <h2>Numbers</h2>
       ...
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
