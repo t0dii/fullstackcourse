@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 
 const App = () => {
@@ -13,9 +14,15 @@ const App = () => {
     event.preventDefault();
     console.log("button clicked", event.target);
     const noteObject = { name: newName };
+    if (isDuplicate) {
+      alert(`${newName} is already added to phonebook`);
+      setNewName("");
+      return;
+    }
     setPersons(persons.concat(noteObject));
     setNewName("");
   };
+  const isDuplicate = persons.some((person) => person.name === newName);
 
   return (
     <div>
