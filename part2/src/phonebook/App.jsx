@@ -4,10 +4,16 @@ import { useState } from "react";
 const App = () => {
   const [persons, setPersons] = useState([{ name: "Arto Hellas" }]);
   const [newName, setNewName] = useState("");
+  const [newNumber, setNewNumber] = useState("");
 
   const handleInput = (event) => {
     console.log(event.target.value);
     setNewName(event.target.value);
+  };
+
+  const handleNumberInput = (event) => {
+    console.log(event.target.value);
+    setNewNumber(event.target.value);
   };
 
   const addNote = (event) => {
@@ -30,6 +36,8 @@ const App = () => {
       <form onSubmit={addNote}>
         <div>
           name: <input value={newName} onChange={handleInput} />
+          <br></br>
+          number: <input value={newNumber} onChange={handleNumberInput} />
         </div>
         <button type="submit">add</button>
       </form>
