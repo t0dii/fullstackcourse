@@ -43,8 +43,10 @@ const App = () => {
   const isDuplicate = persons.some((person) => person.name === newName);
 
   const filterPersons = showAll
-    ? persons
-    : persons.filter((person) => person.name === showAll);
+    ? persons.filter((person) =>
+        person.name.toLowerCase().includes(showAll.toLowerCase()),
+      )
+    : persons;
 
   return (
     <div>
