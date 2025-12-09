@@ -9,6 +9,7 @@ const App = () => {
   ]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
+  const [showAll, setShowAll] = useState("");
 
   const handleInput = (event) => {
     console.log(event.target.value);
@@ -19,6 +20,11 @@ const App = () => {
     console.log(event.target.value);
     console.log("number inputted");
     setNewNumber(event.target.value);
+  };
+
+  const handleFilterInput = (event) => {
+    console.log(event.target.value);
+    setShowAll(event.target.value);
   };
 
   const addNote = (event) => {
@@ -36,8 +42,14 @@ const App = () => {
   };
   const isDuplicate = persons.some((person) => person.name === newName);
 
+  const filterPersons = showAll
+    ? persons
+    : persons.filter((person) => person.name === showAll);
+
   return (
     <div>
+      <h2>Filter</h2>
+      filter shown in: <input onChange={handleFilterInput} />
       <h2>Phonebook</h2>
       <form onSubmit={addNote}>
         <div>
@@ -48,7 +60,7 @@ const App = () => {
         <button type="submit">add</button>
       </form>
       <h2>Numbers</h2>
-      {persons.map((person) => (
+      {filterPersons.map((person) => (
         <div key={person.name}>
           {person.name}
           {person.number}
