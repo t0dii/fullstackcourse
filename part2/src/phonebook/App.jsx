@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useState } from "react";
 
 const App = () => {
@@ -13,13 +12,14 @@ const App = () => {
 
   const handleNumberInput = (event) => {
     console.log(event.target.value);
+    console.log("number inputted");
     setNewNumber(event.target.value);
   };
 
   const addNote = (event) => {
     event.preventDefault();
     console.log("button clicked", event.target);
-    const noteObject = { name: newName };
+    const noteObject = { name: newName, number: newNumber };
     if (isDuplicate) {
       alert(`${newName} is already added to phonebook`);
       setNewName("");
@@ -27,6 +27,7 @@ const App = () => {
     }
     setPersons(persons.concat(noteObject));
     setNewName("");
+    setNewNumber("");
   };
   const isDuplicate = persons.some((person) => person.name === newName);
 
@@ -43,7 +44,10 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       {persons.map((person) => (
-        <div key={person.name}>{person.name}</div>
+        <div key={person.name}>
+          {person.name}
+          {person.number}
+        </div>
       ))}
     </div>
   );
