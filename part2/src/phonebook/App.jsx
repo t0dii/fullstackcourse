@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Filter from "./Filter";
 import PersonForm from "./PersonForm";
+import Persons from "./Persons";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -65,14 +66,8 @@ const App = () => {
       />
 
       <h2>Numbers</h2>
-      {filterPersons.map((person) => (
-        <div key={person.name}>
-          {person.name}
-          {person.number}
-        </div>
-      ))}
+      <Persons filterPersons={filterPersons} />
     </div>
   );
 };
-
 export default App;
