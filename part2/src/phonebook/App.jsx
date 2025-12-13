@@ -14,22 +14,25 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [showAll, setShowAll] = useState("");
 
+  //Update the name state when user types in input
   const handleInput = (event) => {
     console.log(event.target.value);
     setNewName(event.target.value);
   };
-
+  //Update the number state when user types in input
   const handleNumberInput = (event) => {
     console.log(event.target.value);
     console.log("number inputted");
     setNewNumber(event.target.value);
   };
-
+  //Updates filter state when user types in input
   const handleFilterInput = (event) => {
     console.log(event.target.value);
     setShowAll(event.target.value);
   };
 
+  //Handles adding a new person to the phonebook
+  //Sends alert when there is a duplicate name
   const addNote = (event) => {
     event.preventDefault();
     console.log("button clicked", event.target);
@@ -43,8 +46,13 @@ const App = () => {
     setNewName("");
     setNewNumber("");
   };
+  //Checks for duplicate names
   const isDuplicate = persons.some((person) => person.name === newName);
 
+  /**
+     * Returns a filtered list of persons based on the 'showAll' search query.
+     * If the search is empty, returns the full list.
+  */
   const filterPersons = showAll
     ? persons.filter((person) =>
         person.name.toLowerCase().includes(showAll.toLowerCase()),
