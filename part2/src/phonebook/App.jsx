@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import Filter from "./Filter";
 import PersonForm from "./PersonForm";
 import Persons from "./Persons";
@@ -58,6 +59,12 @@ const App = () => {
         person.name.toLowerCase().includes(showAll.toLowerCase()),
       )
     : persons;
+  
+  const promise = axios.get('http://localhost:3001/notes')
+  console.log(promise)
+  
+  const promise2 = axios.get('http://localhost:3001/foobar')
+  console.log(promise2)
 
   return (
     <div>
