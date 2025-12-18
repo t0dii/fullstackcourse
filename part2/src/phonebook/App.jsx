@@ -1,16 +1,11 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Filter from "./Filter";
 import PersonForm from "./PersonForm";
 import Persons from "./Persons";
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: "Arto Hellas", number: "040-123456", id: 1 },
-    { name: "Ada Lovelace", number: "39-44-5323523", id: 2 },
-    { name: "Dan Abramov", number: "12-43-234345", id: 3 },
-    { name: "Mary Poppendieck", number: "39-23-6423122", id: 4 },
-  ]);
+  const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [showAll, setShowAll] = useState("");
@@ -51,25 +46,28 @@ const App = () => {
   const isDuplicate = persons.some((person) => person.name === newName);
 
   /**
-     * Returns a filtered list of persons based on the 'showAll' search query.
-     * If the search is empty, returns the full list.
-  */
+   * Returns a filtered list of persons based on the 'showAll' search query.
+   * If the search is empty, returns the full list.
+   */
   const filterPersons = showAll
     ? persons.filter((person) =>
         person.name.toLowerCase().includes(showAll.toLowerCase()),
       )
     : persons;
-  
-  const promise = axios.get('http://localhost:3001/notes')
-  console.log(promise)
-  
-  const promise2 = axios.get('http://localhost:3001/foobar')
-  console.log(promise2)
+
+  useEffect(() => {
+    console.log("effect");
+    axios.get("http://localhost:3001/persons").then((response) => {
+      console.log("promised fufilled");
+      setPersons(response.data);
+    });
+  }, []);
+  console.log("render", persons.length, "notes");
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter input onChange={handleFilterInput} />
+      <Filter value={showAll} onChange={handleFilterInput} />
 
       <h2>Add a new</h2>
       <PersonForm
