@@ -38,9 +38,13 @@ const App = () => {
       setNewName("");
       return;
     }
-    setPersons(persons.concat(noteObject));
-    setNewName("");
-    setNewNumber("");
+
+    axios.post("http://localhost:3001/persons", noteObject).then((response) => {
+      setPersons(persons.concat(response.data));
+      setPersons(persons.concat(noteObject));
+      setNewName("");
+      setNewNumber("");
+    });
   };
   //Checks for duplicate names
   const isDuplicate = persons.some((person) => person.name === newName);
@@ -54,15 +58,6 @@ const App = () => {
         person.name.toLowerCase().includes(showAll.toLowerCase()),
       )
     : persons;
-
-  useEffect(() => {
-    console.log("effect");
-    axios.get("http://localhost:3001/persons").then((response) => {
-      console.log("promised fufilled");
-      setPersons(response.data);
-    });
-  }, []);
-  console.log("render", persons.length, "notes");
 
   return (
     <div>
