@@ -1,84 +1,9 @@
 {
   "persons": [
     {
-      "id": "fd4a",
-      "name": "et",
-      "number": "1234"
-    },
-    {
-      "id": "c6ac",
-      "name": "testing",
-      "number": "12345676"
-    },
-    {
-      "id": "3f4d",
-      "name": "et",
-      "number": "12"
-    },
-    {
-      "id": "e115",
-      "name": "www",
-      "number": "11"
-    },
-    {
-      "id": "f820",
-      "name": "et",
-      "number": "12"
-    },
-    {
-      "id": "f97e",
-      "name": "et",
-      "number": "1232323"
-    },
-    {
-      "id": "9476",
-      "name": "etet",
-      "number": "12"
-    },
-    {
-      "id": "a436",
-      "name": "thisisatest",
-      "number": "1234567890"
-    },
-    {
-      "id": "57c3",
-      "name": "et",
-      "number": "1222222"
-    },
-    {
-      "id": "bd08",
-      "name": "testing thing ",
-      "number": "190383764"
-    },
-    {
-      "id": "05de",
-      "name": "fuc",
-      "number": "12"
-    },
-    {
-      "id": "8b7c",
-      "name": "another test",
-      "number": "1212"
-    },
-    {
-      "id": "9a05",
-      "name": "ethan",
-      "number": "12"
-    },
-    {
-      "id": "c209",
-      "name": "t",
+      "id": "5c30",
+      "name": "Player",
       "number": "1"
-    },
-    {
-      "id": "3ba4",
-      "name": "hi",
-      "number": "1"
-    },
-    {
-      "id": "8aa5",
-      "name": "testing again",
-      "number": "123"
     }
   ]
 }
