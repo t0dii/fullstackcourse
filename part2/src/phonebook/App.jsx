@@ -39,14 +39,21 @@ const App = () => {
       setNewName("");
       return;
     }
-
     axios.post("http://localhost:3001/persons", noteObject).then((response) => {
-      setPersons(persons.concat(response.data));
-      setPersons(persons.concat(noteObject));
+      setPersons(persons.filter((p) => p.id !== id));
       setNewName("");
       setNewNumber("");
     });
   };
+
+  useEffect(() => {
+    console.log("effect");
+    axios.get("http://localhost:3001/persons").then((response) => {
+      console.log("promise fufilled");
+      setPersons(response.data);
+    });
+  }, []);
+
   //Checks for duplicate names
   const isDuplicate = persons.some((person) => person.name === newName);
 
@@ -59,6 +66,26 @@ const App = () => {
         person.name.toLowerCase().includes(showAll.toLowerCase()),
       )
     : persons;
+
+  const deletePerson = (id) => {
+    console.log("deletePerson was called with id:", id);
+    const winConfirm = window.confirm(
+      "Are you sure you want to delete this user?",
+    );
+    if (winConfirm) {
+      axios
+        .delete("http://localhost:3001/persons/" + id)
+        .then((response) => {
+          console.log("User has been deleted");
+          setPersons(persons.filter((person) => person.id !== id));
+        })
+        .catch((error) => {
+          console.log("Error deleting user", error);
+        });
+    } else {
+      console.log("User deletion cancelled");
+    }
+  };
 
   return (
     <div>
@@ -76,10 +103,17 @@ const App = () => {
 
       <h2>Numbers</h2>
       {persons.map((person) => (
-        <li key={person.id}>
+        <ul key={person.id}>
           {person.name} {person.number}
-          <button onClick={() => deletePerson(person.id)}>Delete</button>
-        </li>
+          <button
+            onClick={() => {
+              console.log("This person's ID is:", person.id);
+              deletePerson(person.id);
+            }}
+          >
+            Delete
+          </button>
+        </ul>
       ))}
     </div>
   );
