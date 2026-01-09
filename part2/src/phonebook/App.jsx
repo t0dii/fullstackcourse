@@ -4,12 +4,14 @@ import Filter from "./Filter";
 import PersonForm from "./PersonForm";
 import Persons from "./Persons";
 import Note from "../services/Note";
+import ErrorNotification from "./Notification";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [showAll, setShowAll] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   //Update the name state when user types in input
   const handleInput = (event) => {
@@ -40,7 +42,11 @@ const App = () => {
       return;
     }
     axios.post("http://localhost:3001/persons", noteObject).then((response) => {
-      setPersons(persons.filter((p) => p.id !== id));
+      setPersons(persons.concat(response.data));
+      setErrorMessage(`Added ${response.data.name}`);
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 5000);
       setNewName("");
       setNewNumber("");
     });
@@ -90,6 +96,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <ErrorNotification message={errorMessage} />
       <Filter value={showAll} onChange={handleFilterInput} />
 
       <h2>Add a new</h2>
@@ -102,19 +109,21 @@ const App = () => {
       />
 
       <h2>Numbers</h2>
-      {persons.map((person) => (
-        <ul key={person.id}>
-          {person.name} {person.number}
-          <button
-            onClick={() => {
-              console.log("This person's ID is:", person.id);
-              deletePerson(person.id);
-            }}
-          >
-            Delete
-          </button>
-        </ul>
-      ))}
+      <ul>
+        {filterPersons.map((person) => (
+          <li key={person.id}>
+            {person.name} {person.number}
+            <button
+              onClick={() => {
+                console.log("This person's ID is:", person.id);
+                deletePerson(person.id);
+              }}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
