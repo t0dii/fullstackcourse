@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "\"\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t0dii/fullstackcourse.git"
+  },
+  "keywords": [
+    "Node"
+  ],
+  "author": "Ethan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/t0dii/fullstackcourse/issues"
+  },
+  "homepage": "https://github.com/t0dii/fullstackcourse#readme"
+}
