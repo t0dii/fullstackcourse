@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/t0dii/fullstackcourse/issues"
   },
-  "homepage": "https://github.com/t0dii/fullstackcourse#readme"
+  "homepage": "https://github.com/t0dii/fullstackcourse#readme",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
