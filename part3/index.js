@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+app.use(express.json());
 let notes = [
   {
     id: "1",
@@ -38,10 +38,17 @@ app.get("/info", (request, response) => {
   );
 });
 
-app.post("/info", (request, response) => {
-  const note = request.body;
+app.get("/api/persons/:id", (request, response) => {
+  const id = request.params.id;
+  const note = notes.find((note) => note.id === id);
+
   console.log(note);
-  response.json(note);
+
+  if (note) {
+    response.json(note);
+  } else {
+    response.status(404).end();
+  }
 });
 
 const PORT = 3001;
