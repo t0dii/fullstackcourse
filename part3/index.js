@@ -69,6 +69,12 @@ app.post("/api/persons", (request, response) => {
       error: "name or number missing",
     });
   }
+  const duplicate = notes.some((note) => note.name === body.name);
+  if (duplicate) {
+    return response.status(400).json({
+      error: "name must be unique",
+    });
+  }
   const person = {
     name: body.name,
     number: body.number || false,
