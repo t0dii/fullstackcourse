@@ -1,6 +1,10 @@
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
+
 app.use(express.json());
+app.use(morgan("tiny"));
+
 let notes = [
   {
     id: "1",
@@ -57,6 +61,10 @@ app.delete("/api/persons/:id", (request, response) => {
   notes = notes.filter((note) => note.id !== id);
 
   response.status(204).end();
+});
+
+app.get("/", function (req, res) {
+  res.send("hello, world!");
 });
 
 const generateId = () => {
