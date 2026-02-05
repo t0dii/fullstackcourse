@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Filter from "./Filter";
 import PersonForm from "./PersonForm";
-import Persons from "./Persons";
-import Note from "../services/Note";
 import ErrorNotification from "./Notification";
 
 const App = () => {
@@ -41,7 +39,7 @@ const App = () => {
       setNewName("");
       return;
     }
-    axios.post("http://localhost:3001/persons", noteObject).then((response) => {
+    axios.post("/api/persons", noteObject).then((response) => {
       setPersons(persons.concat(response.data));
       setErrorMessage(`Added ${response.data.name}`);
       setTimeout(() => {
@@ -54,7 +52,7 @@ const App = () => {
 
   useEffect(() => {
     console.log("effect");
-    axios.get("http://localhost:3001/persons").then((response) => {
+    axios.get("http://localhost:3001/api/persons").then((response) => {
       console.log("promise fufilled");
       setPersons(response.data);
     });
@@ -80,7 +78,7 @@ const App = () => {
     );
     if (winConfirm) {
       axios
-        .delete("http://localhost:3001/persons/" + id)
+        .delete("/api/persons/" + id)
         .then((response) => {
           console.log("User has been deleted");
           setPersons(persons.filter((person) => person.id !== id));
