@@ -1,11 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
-const cors = require("cors");
 const app = express();
+const url = "/api/persons";
 
 app.use(express.json());
 app.use(morgan("tiny"));
-app.use(cors());
+app.use(express.static("dist"));
 
 let notes = [
   {
@@ -29,14 +29,6 @@ let notes = [
     number: "39-23-6423122",
   },
 ];
-
-app.get("/", (request, response) => {
-  response.send("<h1>Hello World!</h1>");
-});
-
-app.get("/api/persons", (request, response) => {
-  response.json(notes);
-});
 
 app.get("/info", (request, response) => {
   response.send(
